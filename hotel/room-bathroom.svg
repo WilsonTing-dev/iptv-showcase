@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="740" height="290" viewBox="0 0 740 290">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1">
+      <stop offset="0" stop-color="#121416"/>
+      <stop offset="0.45" stop-color="#2a2925"/>
+      <stop offset="1" stop-color="#cfc7ba"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" x2="1">
+      <stop offset="0" stop-color="#202b31"/>
+      <stop offset="1" stop-color="#556a72"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="16"/></filter>
+  </defs>
+  <rect width="740" height="290" fill="url(#sky)"/>
+  <rect x="500" y="48" width="185" height="165" fill="#e7e3dc" opacity=".15"/>
+  <path d="M500 48h185M500 103h185M500 158h185M562 48v165M624 48v165" stroke="#fff" stroke-opacity=".15"/>
+  <rect x="454" y="40" width="18" height="202" fill="#2b211b"/>
+  <rect x="0" y="232" width="740" height="58" fill="#191818"/>
+  <path d="M30 242 C168 218, 286 220, 404 242 C372 274, 68 274, 30 242Z" fill="#f5f2ea" opacity=".95"/>
+  <path d="M68 244 C169 230, 282 230, 365 244 C317 257, 123 258, 68 244Z" fill="url(#water)" opacity=".36"/>
+  <rect x="112" y="102" width="180" height="86" rx="8" fill="#d7cec3" opacity=".10"/>
+  <circle cx="202" cy="145" r="44" fill="none" stroke="#d8c4aa" stroke-width="4" opacity=".74"/>
+  <rect x="118" y="195" width="170" height="10" rx="5" fill="#bba17f" opacity=".58"/>
+  <rect x="325" y="82" width="92" height="142" rx="2" fill="#4b3a2d" opacity=".72"/>
+  <path d="M343 102h54M343 124h54M343 146h54M343 168h54" stroke="#f0d4a2" stroke-width="3" opacity=".25"/>
+  <circle cx="598" cy="93" r="54" fill="#ffd8a5" opacity=".11" filter="url(#glow)"/>
+  <rect x="604" y="91" width="20" height="74" rx="9" fill="#f6d19b" opacity=".75"/>
+  <rect x="596" y="164" width="36" height="14" rx="4" fill="#5d4532" opacity=".9"/>
+  <path d="M420 66h35v83" stroke="#caa776" stroke-width="5" fill="none" opacity=".8"/>
+  <rect x="420" y="61" width="50" height="9" rx="4" fill="#cab086" opacity=".9"/>
+  <circle cx="355" cy="75" r="58" fill="#ffe1ac" opacity=".08" filter="url(#glow)"/>
+</svg>
