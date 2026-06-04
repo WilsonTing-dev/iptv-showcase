@@ -1,0 +1,143 @@
+:root {
+  --stage-scale: 1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #03060B;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif;
+  color: #F5F5F7;
+}
+
+.viewport {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #03060B;
+}
+
+.page {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  min-width: 1280px;
+  min-height: 720px;
+  overflow: hidden;
+  background: #03060B;
+  /* v94: Fit the fixed 1280x720 design to the visible TV/WebView area.
+     JavaScript now clamps the scale to a maximum of 1, so returning Home cannot
+     zoom the page larger than the original design size. */
+  transform: scale(var(--stage-scale));
+  transform-origin: center center;
+}
+
+.page-bg {
+  position: absolute;
+  inset: 0;
+  width: 1280px;
+  height: 720px;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.page-darken {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(3, 6, 11, 0.42) 0%, rgba(3, 6, 11, 0.24) 45%, rgba(3, 6, 11, 0.18) 100%),
+    rgba(3, 6, 11, 0.24);
+}
+
+a {
+  color: inherit;
+}
+
+/* v94: TV safe render mode.
+   Keep the 1280x720 design stable on TV/APK. The scale may shrink to fit smaller
+   viewports but will not grow above 1, preventing Home from looking zoomed after
+   returning from another page. */
+html:not(.stage-ready) .page {
+  visibility: hidden;
+}
+
+html.no-entry-motion *,
+html.no-entry-motion *::before,
+html.no-entry-motion *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
+html.tv-fit-render .page {
+  transform: scale(var(--stage-scale)) !important;
+}
+
+.page {
+  transition: none !important;
+  animation: none !important;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* v94: keep item focus stable. Selection uses border/glow only, not scale zoom. */
+html.tv-fit-render .nav-item.selected,
+html.tv-fit-render .nav-item.focused,
+html.tv-fit-render .nav-item.pressed,
+html.tv-fit-render .home-menu-card.selected,
+html.tv-fit-render .home-menu-card.focused,
+html.tv-fit-render .movie-card.focused,
+html.tv-fit-render .movie-card.selected,
+html.tv-fit-render .room-item-card.focused,
+html.tv-fit-render .room-item-card.selected,
+html.tv-fit-render .feature-option-card.focused,
+html.tv-fit-render .feature-option-card.selected,
+html.tv-fit-render .channel-row.focused,
+html.tv-fit-render .channel-row.selected,
+html.tv-fit-render .favourite-card.focused,
+html.tv-fit-render .favourite-card.selected,
+html.tv-fit-render .radio-station-card.focused,
+html.tv-fit-render .radio-station-card.selected {
+  transform: none !important;
+}
+
+html.tv-fit-render .nav-item,
+html.tv-fit-render .home-menu-card,
+html.tv-fit-render .movie-card,
+html.tv-fit-render .room-item-card,
+html.tv-fit-render .feature-option-card,
+html.tv-fit-render .channel-row,
+html.tv-fit-render .favourite-card,
+html.tv-fit-render .radio-station-card {
+  transition-property: border-color, box-shadow, background, color, opacity, filter !important;
+}
+
+/* v95: Home return stability for TV/APK.
+   Home is the only page the user reported as looking zoomed after returning.
+   Keep all focus feedback as border/glow only and force a fresh stable scale on Home. */
+html.tv-fit-render .home-page {
+  transform: scale(var(--stage-scale)) translateZ(0) !important;
+  transform-origin: center center !important;
+}
+
+html.tv-fit-render .home-page .home-menu-card.selected img,
+html.tv-fit-render .home-page .home-menu-card.focused img {
+  transform: translateX(-50%) !important;
+}
+
+html.no-entry-motion .home-page .home-menu-track {
+  transition: none !important;
+}
